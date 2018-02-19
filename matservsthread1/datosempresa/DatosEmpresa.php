@@ -43,7 +43,7 @@ class DatosEmpresa
     {
         // Consulta de la tabla datosempresa
         $consulta = "SELECT *
-                             FROM datosEmpresa
+                             FROM datosempresa
                              WHERE idEmpresa = ?";
 
         try {
