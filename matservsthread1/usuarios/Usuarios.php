@@ -108,7 +108,6 @@ class Usuarios
             $cmd = Database::getInstance()->getDb()->prepare($consulta);
             // Relacionar y ejecutar la sentencia
             $cmd->execute(array($usuario, $clave, $permisos
-                    , $nombre, $apellidoPaterno,$apellidoMaterno
                     , $telefonoCasa, $telefonoCelular,$idSucursal,$idUsuario));
         }
         return $cmd;
