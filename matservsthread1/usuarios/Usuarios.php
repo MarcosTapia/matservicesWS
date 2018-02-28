@@ -86,20 +86,31 @@ class Usuarios
         $idSucursal
     )
     {  
-        // Creando consulta UPDATE
-        $consulta = "UPDATE usuarios" .
-            " SET usuario=?, clave=?, permisos=?, nombre=?,".
-            " apellido_paterno=?, apellido_materno=?, telefono_casa=?, telefono_celular=?, idSucursal=? " .
-            "WHERE idUsuario=?";
-
-        // Preparar la sentencia
-        $cmd = Database::getInstance()->getDb()->prepare($consulta);
-
-        // Relacionar y ejecutar la sentencia
-        $cmd->execute(array($usuario, $clave, $permisos
-                , $nombre, $apellidoPaterno,$apellidoMaterno
-                , $telefonoCasa, $telefonoCelular,$idSucursal,$idUsuario));
-
+        if ($clave == "") {
+            // Creando consulta UPDATE
+            $consulta = "UPDATE usuarios" .
+                " SET usuario=?, permisos=?, nombre=?,".
+                " apellido_paterno=?, apellido_materno=?, telefono_casa=?, telefono_celular=?, idSucursal=? " .
+                "WHERE idUsuario=?";
+            // Preparar la sentencia
+            $cmd = Database::getInstance()->getDb()->prepare($consulta);
+            // Relacionar y ejecutar la sentencia
+            $cmd->execute(array($usuario, $permisos
+                    , $nombre, $apellidoPaterno,$apellidoMaterno
+                    , $telefonoCasa, $telefonoCelular,$idSucursal,$idUsuario));
+        } else {
+            // Creando consulta UPDATE
+            $consulta = "UPDATE usuarios" .
+                " SET usuario=?, clave=?, permisos=?, nombre=?,".
+                " apellido_paterno=?, apellido_materno=?, telefono_casa=?, telefono_celular=?, idSucursal=? " .
+                "WHERE idUsuario=?";
+            // Preparar la sentencia
+            $cmd = Database::getInstance()->getDb()->prepare($consulta);
+            // Relacionar y ejecutar la sentencia
+            $cmd->execute(array($usuario, $clave, $permisos
+                    , $nombre, $apellidoPaterno,$apellidoMaterno
+                    , $telefonoCasa, $telefonoCelular,$idSucursal,$idUsuario));
+        }
         return $cmd;
     }
 
